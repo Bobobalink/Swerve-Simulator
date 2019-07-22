@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SWERVE DRIVE SIMULATOR</title>
+</head>
+<body>
+<div id="WorldArea"></div>
+<button onclick="resetRobot()">Reset Robot</button>
+<br />
+<label for="controllerPicker">Choose Active Controller</label>
+<select id="controllerPicker" onchange="changeController()">
+</select>
+<br />
+<label for="robotPicker">Choose Robot Layout</label>
+<select id="robotPicker" onchange="changeRobot()">
+</select>
+<script src="constants.js"></script>
+<script src="phaser.js"></script>
+<script src="drawing.js"></script>
+<script type="text/javascript" src="main.js"></script>
+</body>
+</html>
