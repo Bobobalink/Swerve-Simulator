@@ -1,4 +1,3 @@
-import RobotControllers.ArcadeDrive;
 import RobotControllers.TankDrive;
 import interfaces.RobotController;
 
@@ -56,6 +55,5 @@ public class ControllersAndRobots {
         // here is where you put new controllers to test
         // again, the top entry is the one that's enabled by default
         controllers.put("Tank Drive", new TankDrive());
-        controllers.put("Arcade Drive", new ArcadeDrive());
     }
 }
