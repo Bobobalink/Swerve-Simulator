@@ -32,6 +32,8 @@ Setup
     + `git pull` takes all of the commits on *your* github repository and copies them to your computer, *merging* all of their changes into your code
   + Additionally, you can easily get any changes that have been made on this repository (e.g. new tasks, updated simulation, etc.)
     + `git pull problems master`
+
+
 - Now we can set up the development environment and finally run the code!
 - Download and install the newest version of the Java Development Kit (JDK) from [here](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
   This was developed for Java 12 but it should work fine with newer versions
@@ -44,6 +46,8 @@ Setup
 
 How to use the Simulation
 -----------------
+- Start the simulation by navigating to `main/kotlin/main.kt` and press `ctrl+shift+f10`. This will create a "run configuration", visible in the top left corner of the scren
+- After this, to run it again you can just press `shift+f10` from any file, or press the start button at the top right corner of the screen
 - The robot is drawn according to the scale factors found in `static/constants.js`. Change these if it doesn't show up well on your screen
 - The robot body is green if there is no wheel slippage, and red if any wheel is trying to drive in a direction or speed
   that is not the same as the direction and speed it should be going according to the motion of the robot body

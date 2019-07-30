@@ -19,5 +19,5 @@ public interface SwerveWheelInterface {
 
     // gets the position of the wheel compared to the center of the robot frame in meters
     // positive values are forward and to the right of the robot frame
-    public Point2D.Double getWheelPosition();
+    public Point2D.Double getPosition();
 }

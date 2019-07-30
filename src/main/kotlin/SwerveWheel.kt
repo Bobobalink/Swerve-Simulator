@@ -28,7 +28,7 @@ class SwerveWheel(private val location: Point2D.Double) : SwerveWheelInterface {
         wheelVelocity = speed
     }
 
-    override fun getWheelPosition(): Point2D.Double {
+    override fun getPosition(): Point2D.Double {
         return location.copy()
     }
 

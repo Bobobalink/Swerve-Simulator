@@ -15,7 +15,7 @@ function drawRobot(graphics: Phaser.GameObjects.Graphics, robotState) {
         let rect = new Geom.Rectangle(-0.005, -0.005, 0.01, 0.01);
         // get the bounding box of center of each wheel
         for (let i = 0; i < robotState.drivetrain.length; i++) {
-            let wheelPos = robotState.drivetrain[i].wheelPosition;
+            let wheelPos = robotState.drivetrain[i].position;
             Geom.Rectangle.MergeXY(rect, wheelPos.x, wheelPos.y);
         }
         // expand the bounding box
@@ -39,13 +39,13 @@ function drawVelocities(graphics, robotState) {
     graphics.lineStyle(2, 0xffff00);
     graphics.fillStyle(0xffff00);
 
-    if(mag(robotState.linearVelocity) > 0.01) {
+    if (mag(robotState.linearVelocity) > 0.01) {
         drawVector(graphics, pointToPixels(robotState.position), velocityToPixels(robotState.linearVelocity));
     }
 
     for (let i = 0; i < robotState.drivetrain.length; i++) {
-        if(mag(robotState.drivetrain[i].velocityAtWheel) > 0.01) {
-            let wheelPos = robotState.drivetrain[i].wheelPosition;
+        if (mag(robotState.drivetrain[i].velocityAtWheel) > 0.01) {
+            let wheelPos = robotState.drivetrain[i].position;
             wheelPos = rotatePoint(wheelPos, robotState.heading);
             translatePoint(wheelPos, robotState.position);
 
@@ -61,8 +61,8 @@ function drawAppliedVelocities(graphics, robotState) {
     graphics.lineStyle(2, 0xff00ff);
     graphics.fillStyle(0xff00ff);
     for (let i = 0; i < robotState.drivetrain.length; i++) {
-        if(mag(robotState.drivetrain[i].appliedVel) > 0.01) {
-            let wheelPos = robotState.drivetrain[i].wheelPosition;
+        if (mag(robotState.drivetrain[i].appliedVel) > 0.01) {
+            let wheelPos = robotState.drivetrain[i].position;
             wheelPos = rotatePoint(wheelPos, robotState.heading);
             translatePoint(wheelPos, robotState.position);
 
@@ -76,12 +76,12 @@ function drawAppliedVelocities(graphics, robotState) {
 
 function drawSwerveModules(graphics: Phaser.GameObjects.Graphics, robotState) {
     // draw each swerve module by copying the prototype body and transforming it
-    for(let mod of robotState.drivetrain) {
+    for (let mod of robotState.drivetrain) {
         let lmb = Geom.Polygon.Clone(moduleBody);
 
         // relative to the robot
         rotatePoly(lmb, -1 * mod.wheelAngle);
-        translatePoly(lmb, mod.wheelPosition);
+        translatePoly(lmb, mod.position);
 
         //now move it to where the robot is
         rotatePoly(lmb, robotState.heading);
@@ -91,7 +91,7 @@ function drawSwerveModules(graphics: Phaser.GameObjects.Graphics, robotState) {
 
         graphics.lineStyle(2, 0x000000);
 
-        if(mag(mod.wheelSlip) < 0.1) {
+        if (mag(mod.wheelSlip) < 0.1) {
             graphics.fillStyle(0x00ff00, 1.0);
         } else {
             graphics.fillStyle(0xff0000, 1.0);
@@ -100,7 +100,7 @@ function drawSwerveModules(graphics: Phaser.GameObjects.Graphics, robotState) {
         graphics.fillPoints(lmb.points, true);
         graphics.strokePoints(lmb.points, true);
 
-        let centerPoint = mod.wheelPosition;
+        let centerPoint = mod.position;
         centerPoint = rotatePoint(centerPoint, robotState.heading);
         translatePoint(centerPoint, robotState.position);
         centerPoint = pointToPixels(centerPoint);

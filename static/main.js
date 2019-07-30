@@ -26,8 +26,6 @@ var sceneThing;
 var gfx;
 function preload() {
     this.load.image('grid', 'gridPattern.jpg');
-    this.load.image('robotBody', 'sprites/robotbody.png');
-    this.load.image('module', 'sprites/module.png');
 }
 function create() {
     this.add.image(0, 0, 'grid').setOrigin(0);

@@ -12,7 +12,7 @@ function drawRobot(graphics, robotState) {
         var rect = new Geom.Rectangle(-0.005, -0.005, 0.01, 0.01);
         // get the bounding box of center of each wheel
         for (var i = 0; i < robotState.drivetrain.length; i++) {
-            var wheelPos = robotState.drivetrain[i].wheelPosition;
+            var wheelPos = robotState.drivetrain[i].position;
             Geom.Rectangle.MergeXY(rect, wheelPos.x, wheelPos.y);
         }
         // expand the bounding box
@@ -33,7 +33,7 @@ function drawVelocities(graphics, robotState) {
     }
     for (var i = 0; i < robotState.drivetrain.length; i++) {
         if (mag(robotState.drivetrain[i].velocityAtWheel) > 0.01) {
-            var wheelPos = robotState.drivetrain[i].wheelPosition;
+            var wheelPos = robotState.drivetrain[i].position;
             wheelPos = rotatePoint(wheelPos, robotState.heading);
             translatePoint(wheelPos, robotState.position);
             var wheelVel = robotState.drivetrain[i].velocityAtWheel;
@@ -47,7 +47,7 @@ function drawAppliedVelocities(graphics, robotState) {
     graphics.fillStyle(0xff00ff);
     for (var i = 0; i < robotState.drivetrain.length; i++) {
         if (mag(robotState.drivetrain[i].appliedVel) > 0.01) {
-            var wheelPos = robotState.drivetrain[i].wheelPosition;
+            var wheelPos = robotState.drivetrain[i].position;
             wheelPos = rotatePoint(wheelPos, robotState.heading);
             translatePoint(wheelPos, robotState.position);
             var wheelVel = robotState.drivetrain[i].appliedVel;
@@ -63,7 +63,7 @@ function drawSwerveModules(graphics, robotState) {
         var lmb = Geom.Polygon.Clone(moduleBody);
         // relative to the robot
         rotatePoly(lmb, -1 * mod.wheelAngle);
-        translatePoly(lmb, mod.wheelPosition);
+        translatePoly(lmb, mod.position);
         //now move it to where the robot is
         rotatePoly(lmb, robotState.heading);
         translatePoly(lmb, robotState.position);
@@ -77,7 +77,7 @@ function drawSwerveModules(graphics, robotState) {
         }
         graphics.fillPoints(lmb.points, true);
         graphics.strokePoints(lmb.points, true);
-        var centerPoint = mod.wheelPosition;
+        var centerPoint = mod.position;
         centerPoint = rotatePoint(centerPoint, robotState.heading);
         translatePoint(centerPoint, robotState.position);
         centerPoint = pointToPixels(centerPoint);

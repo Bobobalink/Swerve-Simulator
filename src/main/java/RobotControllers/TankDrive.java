@@ -21,7 +21,7 @@ public class TankDrive implements RobotController {
             wheel.setWheelAngle(0);
 
             // if the wheel is on the right side of the robot
-            if(wheel.getWheelPosition().x > 0) {
+            if(wheel.getPosition().x > 0) {
                 wheel.setWheelVelocity(rightPower);
             } else {
                 wheel.setWheelVelocity(leftPower);

@@ -31,8 +31,6 @@ let gfx: Phaser.GameObjects.Graphics;
 
 function preload() {
     this.load.image('grid', 'gridPattern.jpg');
-    this.load.image('robotBody', 'sprites/robotbody.png');
-    this.load.image('module', 'sprites/module.png');
 }
 
 function create(this) {
