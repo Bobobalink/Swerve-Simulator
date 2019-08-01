@@ -62,7 +62,7 @@ function drawSwerveModules(graphics, robotState) {
         var mod = _a[_i];
         var lmb = Geom.Polygon.Clone(moduleBody);
         // relative to the robot
-        rotatePoly(lmb, -1 * mod.wheelAngle);
+        rotatePoly(lmb, mod.wheelAngle);
         translatePoly(lmb, mod.position);
         //now move it to where the robot is
         rotatePoly(lmb, robotState.heading);

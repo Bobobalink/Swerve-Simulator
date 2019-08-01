@@ -36,8 +36,8 @@ class SwerveWheel(private val location: Point2D.Double) : SwerveWheelInterface {
 
     val appliedVel: Point2D.Double
         get() {
-            // 0 angle is up (y)
-            return Point2D.Double(sin(wheelAngle) * wheelVelocity, cos(wheelAngle) * wheelVelocity)
+            // 0 angle is up (y): add pi / 2 from the angle to get back to normal land
+            return Point2D.Double(cos(wheelAngle + PI / 2) * wheelVelocity, sin(wheelAngle + PI / 2) * wheelVelocity)
         }
 
     // gets the rotational velocity of the frame set by this wheel

@@ -9,8 +9,9 @@ public interface SwerveWheelInterface {
     // gets the wheel velocity (in m/s)
     public double getWheelVelocity();
 
-    // sets the wheel angle in randians compared to the front of the robot
+    // sets the wheel angle in radians compared to the front of the robot
     // (0, pi) is steering to the left, (-pi, 0) is steering right
+    // note that an angle of 0 is pointing up, but traditionally in math an angle of 0 is pointing right
     public void setWheelAngle(double angle);
 
     // sets the wheel velocity (in m/s)

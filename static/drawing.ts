@@ -80,7 +80,7 @@ function drawSwerveModules(graphics: Phaser.GameObjects.Graphics, robotState) {
         let lmb = Geom.Polygon.Clone(moduleBody);
 
         // relative to the robot
-        rotatePoly(lmb, -1 * mod.wheelAngle);
+        rotatePoly(lmb, mod.wheelAngle);
         translatePoly(lmb, mod.position);
 
         //now move it to where the robot is
