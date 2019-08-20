@@ -32,6 +32,8 @@ Setup
     + `git pull` takes all of the commits on *your* github repository and copies them to your computer, *merging* all of their changes into your code
   + Additionally, you can easily get any changes that have been made on this repository (e.g. new tasks, updated simulation, etc.)
     + `git pull problems master`
+  + When you pull (from your git repository or from this repository), it will fail unless all of your local changes have been commited
+    + Check this by running `git status`, make sure it says "working directory clean"
 
 
 - Now we can set up the development environment and finally run the code!
@@ -39,10 +41,10 @@ Setup
   This was developed for Java 12 but it should work fine with newer versions
 - Download and install Intellij IDEA Community edition from [here](https://www.jetbrains.com/idea/download). This is a fully featured Java and Kotlin IDE made by Jetbrains (conveniently the creator of Kotlin).  
   At some point I'll figure out how to put this stuff in VS Code, but until then just use IDEA, it's free and very good.
-- After it's setup, press "import project" and choose `build.gradle.kts`. Click finish and wait for the bottom right hand corner of the screen to stop saying things are running
+- After it's setup, press "import project" and choose `build.gradle.kts` in the folder of the git repository you just created. Click finish and wait for the bottom right hand corner of the screen to stop saying things are running
 - Open `src/main/kotlin/main.kt` and press the green arrow next to the line saying `fun main() {` (or press `ctrl+shift+f10`)
-- Click the link in the console output (http://localhost:7000) to go to the webpage. Press some buttons on your controller to wake it up, and you should be able to drive the robot!
-- Whoooo, we're finally done! Now onto the tasks.
+- Click the link in the console output (http://localhost:7000) to go to the webpage. Press some buttons on your controller to wake it up, and you should be able to drive the robot.
+- If it isn't working, close IDEA and delete the folder containing the git repository, then follow the instructions again.
 
 How to use the Simulation
 -----------------
@@ -52,7 +54,7 @@ How to use the Simulation
 - The robot body is green if there is no wheel slippage, and red if any wheel is trying to drive in a direction or speed
   that is not the same as the direction and speed it should be going according to the motion of the robot body
 - Each swerve module will also be drawn as red or green according to the same logic
-- The bluish arrows are the velocities that each swerve wheel is driven to go. If it's swerving properly, these arrows will be under the yellow arrows
+- The bluish arrows are the velocities that each swerve wheel is driven to go. If it's swerving properly, these arrows will perfectly match the yellow arrows, making them invisible.
 - The yellow arrows at each swerve module and the center of rotation of the robot body is the velocity each piece is actually going, relative to the floor.
 - Use the Robot Controller and Robot Layout dropdowns to choose different robot controllers and bodies to use.
   Selecting a new one will immediately change the simulation to using that setup.
@@ -61,7 +63,7 @@ How to use the Simulation
 Code locations:
 ---------------
 - in `src/main/java` you will find Java interfaces that `interfaces.RobotController` will interact with. All controllers implement `interfaces.RobotController` and are passed instances of `interfaces.JoysticksInterface` and `interfaces.RobotInterface` which are used to control the robot.  
-- `src/main/kotlin` contains the code for the robot simulation. Students are not expected to look at any of this code and it is a bit messy right now.  
+- `src/main/kotlin` contains the code for the robot simulation. Students are not expected to look at any of this code.
 - `static/` contains all of the frontend code for displaying the robot on the web page. Also not necessary/expected to look at this code
 
 ------------------------------------------------------------------------------------------------------------------------
