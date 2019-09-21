@@ -60,6 +60,8 @@ How to use the Simulation
   Selecting a new one will immediately change the simulation to using that setup.
 - The reset button will put the robot back at the origin and pointing directly up.
 
+Now that everything is setup, go to the `tasks/` folder and start coding! Read `0. General Instructions` and then go onto the first tasks. 
+
 Code locations:
 ---------------
 - in `src/main/java` you will find Java interfaces that `interfaces.RobotController` will interact with. All controllers implement `interfaces.RobotController` and are passed instances of `interfaces.JoysticksInterface` and `interfaces.RobotInterface` which are used to control the robot.  
