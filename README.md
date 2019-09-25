@@ -12,9 +12,9 @@ Setup
 -----
 - Download and install the Git command line from [here](https://git-scm.com/downloads). Unless you know what you're doing, don't use VIM as the editor.
   I would suggest using Notepad++, if you don't already have it installed then it's totally worth getting
-- If you don't already have one, make a Github account on the website you're reading this from. Make a new repository by
-  clicking the + in the top right corner of the page. Don't include a readme, gitignore, or license file since these are all included in my repository.
-  Once it's created, click the "Clone or Download" button and copy the url it gives you.
+- If you don't already have one, make a Github account on the website you're reading this from. 
+- Make a new repository by clicking the + in the top right corner of the page. Don't include a readme, gitignore, or license file since these are all included in my repository.
+- On the repository page, copy the URL under the "Quick Setup" box
 - Open up the GIT Bash on your computer. Type `cd My\ Documents/` then press enter. Next, run `git clone <copied url>` (right click to paste) to get the repository on your computer
 - `cd <folder>` into the folder you just made (it says `cloning into <folder>` in the last command).
 - Now for the fun git stuff: we're going to create a link between your new repository and my master repository.
@@ -60,7 +60,7 @@ How to use the Simulation
   Selecting a new one will immediately change the simulation to using that setup.
 - The reset button will put the robot back at the origin and pointing directly up.
 
-Now that everything is setup, go to the `tasks/` folder and start coding! Read `0. General Instructions` and then go onto the first tasks. 
+Now that everything is setup, go to the `tasks/` folder and start coding! Read `0. General Instructions` and then move on to the first task. 
 
 Code locations:
 ---------------
