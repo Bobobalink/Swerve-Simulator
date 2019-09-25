@@ -66,7 +66,8 @@ function changeRobot() {
     var selector = document.getElementById("robotPicker");
     var robot = selector.value;
     var request = new XMLHttpRequest();
-    robotBody = null;
+    request.onreadystatechange = function () { if (request.readyState === 4)
+        robotBody = null; };
     request.open('POST', '/changeRobot', true);
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
     request.send(robot);

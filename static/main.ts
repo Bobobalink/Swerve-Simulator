@@ -80,7 +80,8 @@ function changeRobot() {
     let selector = document.getElementById("robotPicker") as HTMLSelectElement;
     let robot = selector.value;
     let request = new XMLHttpRequest();
-    robotBody = null;
+    request.onreadystatechange = () => {if (request.readyState === 4) robotBody = null};
+
     request.open('POST', '/changeRobot', true);
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
     request.send(robot);

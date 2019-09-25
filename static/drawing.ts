@@ -5,13 +5,15 @@
 import Geom = Phaser.Geom;
 
 let robotBody: Geom.Polygon = null;
+let rbh: string = '';
 let modRect = new Geom.Rectangle(-0.07, -0.07, 0.14, 0.14);
 let moduleBody = rectToPointyPoly(modRect);
 
 function drawRobot(graphics: Phaser.GameObjects.Graphics, robotState) {
     if (graphics == null || robotState == null || robotState.position == null)
         return;
-    if (robotBody == null) {
+    let newRBH = badHash(robotState.drivetrain);
+    if (robotBody == null || rbh != newRBH) {
         let rect = new Geom.Rectangle(-0.005, -0.005, 0.01, 0.01);
         // get the bounding box of center of each wheel
         for (let i = 0; i < robotState.drivetrain.length; i++) {
@@ -22,6 +24,7 @@ function drawRobot(graphics: Phaser.GameObjects.Graphics, robotState) {
         Geom.Rectangle.Inflate(rect, 0.15, 0.15);
 
         robotBody = rectToPointyPoly(rect);
+        rbh = newRBH;
     }
 
     graphics.clear();
@@ -213,4 +216,15 @@ function drawVector(graphics: Phaser.GameObjects.Graphics, point, vec) {
     //draw the line of the vector (set the color before calling the function)
     graphics.lineBetween(point.x, point.y, tip.x, tip.y);
     graphics.fillTriangleShape(head);
+}
+
+
+function badHash(drivetrain) {
+    // don't judge my terrible "hash"
+    let str = "";
+    for (let i = 0; i < drivetrain.length; i++) {
+        str = str.concat(drivetrain[i].position.x, drivetrain[i].position.y);
+    }
+
+    return str;
 }

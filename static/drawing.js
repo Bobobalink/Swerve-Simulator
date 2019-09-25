@@ -3,12 +3,14 @@
 ///<reference path="constants.js"/>
 var Geom = Phaser.Geom;
 var robotBody = null;
+var rbh = '';
 var modRect = new Geom.Rectangle(-0.07, -0.07, 0.14, 0.14);
 var moduleBody = rectToPointyPoly(modRect);
 function drawRobot(graphics, robotState) {
     if (graphics == null || robotState == null || robotState.position == null)
         return;
-    if (robotBody == null) {
+    var newRBH = badHash(robotState.drivetrain);
+    if (robotBody == null || rbh != newRBH) {
         var rect = new Geom.Rectangle(-0.005, -0.005, 0.01, 0.01);
         // get the bounding box of center of each wheel
         for (var i = 0; i < robotState.drivetrain.length; i++) {
@@ -18,6 +20,7 @@ function drawRobot(graphics, robotState) {
         // expand the bounding box
         Geom.Rectangle.Inflate(rect, 0.15, 0.15);
         robotBody = rectToPointyPoly(rect);
+        rbh = newRBH;
     }
     graphics.clear();
     drawSwerveModules(graphics, robotState);
@@ -170,4 +173,12 @@ function drawVector(graphics, point, vec) {
     //draw the line of the vector (set the color before calling the function)
     graphics.lineBetween(point.x, point.y, tip.x, tip.y);
     graphics.fillTriangleShape(head);
+}
+function badHash(drivetrain) {
+    // don't judge my terrible "hash"
+    var str = "";
+    for (var i = 0; i < drivetrain.length; i++) {
+        str = str.concat(drivetrain[i].position.x, drivetrain[i].position.y);
+    }
+    return str;
 }
