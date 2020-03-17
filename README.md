@@ -39,8 +39,7 @@ Setup
 - Now we can set up the development environment and finally run the code!
 - Download and install the newest version of the Java Development Kit (JDK) from [here](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
   This was developed for Java 12 but it should work fine with newer versions
-- Download and install Intellij IDEA Community edition from [here](https://www.jetbrains.com/idea/download). This is a fully featured Java and Kotlin IDE made by Jetbrains (conveniently the creator of Kotlin).  
-  At some point I'll figure out how to put this stuff in VS Code, but until then just use IDEA, it's free and very good.
+- Download and install Intellij IDEA Community edition from [here](https://www.jetbrains.com/idea/download). This is a fully featured Java and Kotlin IDE made by Jetbrains (conveniently the creator of Kotlin).
 - After it's setup, press "import project" and choose `build.gradle.kts` in the folder of the git repository you just created. Click finish and wait for the bottom right hand corner of the screen to stop saying things are running
 - Open `src/main/kotlin/main.kt` and press the green arrow next to the line saying `fun main() {` (or press `ctrl+shift+f10`)
 - Click the link in the console output (http://localhost:7000) to go to the webpage. Press some buttons on your controller to wake it up, and you should be able to drive the robot.
