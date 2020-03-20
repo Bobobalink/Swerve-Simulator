@@ -17,11 +17,16 @@ Setup
 - On the repository page, copy the URL under the "Quick Setup" box
 - Open up the GIT Bash on your computer. Type `cd My\ Documents/` then press enter. Next, run `git clone <copied url>` (right click to paste) to get the repository on your computer
 - `cd <folder>` into the folder you just made (it says `cloning into <folder>` in the last command).
-- Now for the fun git stuff: we're going to create a link between your new repository and my master repository.
+- As an aside, you'll need to do a bit of stuff in the git command line, so you might want
+  [this guide](https://www.techspot.com/guides/835-linux-command-line-basics/) to learn the bare minimum of navigating it
+- Now for the fun git stuff: we're going to create a link between your new repository and my master repository. Run these commands in order:
   + `git remote add problems https://github.com/Bobobalink/Swerve-Simulator.git`
   + `git pull problems master`
   + `git push`
 - You should now have all of the files from this repository in the folder you just created, and your own git repository that you can push your solutions to
+- Now would be a good time to divert to a good git tutorial. I really like [this one](https://guides.github.com/introduction/git-handbook/)
+  for beginners, and [this one](https://git-scm.com/docs/gittutorial) if you want to learn more about what git can do for you.
+  Either way, don't follow the instructions, just read what they have to say about the various git commands.
 - What we've created is a slightly non-trivial git setup using two different "upstream" repositories. This allows several things:
   + Just like any git repository, you can sync your local changes with the remote github repo:
     + `git add .` adds the changes you've made to the list of things to commit (`.` is the current directory, change this to only commit some changes)
@@ -32,7 +37,7 @@ Setup
     + `git pull` takes all of the commits on *your* github repository and copies them to your computer, *merging* all of their changes into your code
   + Additionally, you can easily get any changes that have been made on this repository (e.g. new tasks, updated simulation, etc.)
     + `git pull problems master`
-  + When you pull (from your git repository or from this repository), it will fail unless all of your local changes have been commited
+  + When you pull (from your git repository or from this repository), it will fail unless all of your local changes have been committed
     + Check this by running `git status`, make sure it says "working directory clean"
 
 
@@ -47,14 +52,10 @@ Setup
 
 How to use the Simulation
 -----------------
-- Start the simulation by navigating to `main/kotlin/main.kt` and press `ctrl+shift+f10`. This will create a "run configuration", visible in the top left corner of the scren
+- Start the simulation by navigating to `main/kotlin/main.kt` and press `ctrl+shift+f10`. This will create a "run configuration", visible in the top left corner of the screen
 - After this, to run it again you can just press `shift+f10` from any file, or press the start button at the top right corner of the screen
-- The robot is drawn according to the scale factors found in `static/constants.js`. Change these if it doesn't show up well on your screen
-- The robot body is green if there is no wheel slippage, and red if any wheel is trying to drive in a direction or speed
-  that is not the same as the direction and speed it should be going according to the motion of the robot body
-- Each swerve module will also be drawn as red or green according to the same logic
-- The bluish arrows are the velocities that each swerve wheel is driven to go. If it's swerving properly, these arrows will perfectly match the yellow arrows, making them invisible.
-- The yellow arrows at each swerve module and the center of rotation of the robot body is the velocity each piece is actually going, relative to the floor.
+- Use an xbox controller connected to your computer to control the robot. With tank drive, the y axis of each stick controls each side of the robot.
+- See `tasks/0. General Instructions` to learn about what the arrows and colors mean.
 - Use the Robot Controller and Robot Layout dropdowns to choose different robot controllers and bodies to use.
   Selecting a new one will immediately change the simulation to using that setup.
 - The reset button will put the robot back at the origin and pointing directly up.
