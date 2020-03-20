@@ -41,17 +41,6 @@ public class ControllersAndRobots {
                 new SwerveWheel(0.75, 0.0), new SwerveWheel(-0.75, 0.0)
         ))));
 
-        // through the magic of my bad simulation, this simulates a robot with one powered wheel in front and a free moving back
-        robots.put("Motorcycle", new Robot(new ArrayList<>(Arrays.asList(
-                new SwerveWheel(0.0, 0.5)
-        ))));
-
-        // this is the same logic as Motorcycle, but this time simulating a front wheel drive car
-        robots.put("Car", new Robot(new ArrayList<>(Arrays.asList(
-                new SwerveWheel(0.5, 0.5),
-                new SwerveWheel(-0.5, 0.5)
-        ))));
-
         // here is where you put new controllers to test
         // again, the top entry is the one that's enabled by default
         controllers.put("Tank Drive", new TankDrive());
