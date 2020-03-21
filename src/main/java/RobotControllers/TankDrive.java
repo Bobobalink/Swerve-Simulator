@@ -1,5 +1,7 @@
 package RobotControllers;
 
+import java.util.List;
+
 import interfaces.JoysticksInterface;
 import interfaces.RobotController;
 import interfaces.RobotInterface;
@@ -14,7 +16,7 @@ public class TankDrive implements RobotController {
         // this is a list of the swerve modules that are on the robot
         List<SwerveWheelInterface> drivetrain = robot.getDrivetrain();
 
-        for(int i = 0; i < drivetrain.length(); i++) { // loop through each swerve module
+        for(int i = 0; i < drivetrain.size(); i++) { // loop through each swerve module
             SwerveWheelInterface wheel = drivetrain.get(i); // the swerve module we are looking at
 
             wheel.setWheelAngle(0); // make sure the wheels are always facing forward (none of this funny swerve business)
