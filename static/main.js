@@ -23,6 +23,7 @@ var config = {
 };
 var game = new Phaser.Game(config);
 var sceneThing;
+var keyInput;
 var gfx;
 function preload() {
     this.load.image('grid', 'gridPattern.jpg');
@@ -31,22 +32,56 @@ function create() {
     this.add.image(0, 0, 'grid').setOrigin(0);
     gfx = this.add.graphics();
     sceneThing = this;
+    keyInput = this.input.keyboard.addKeys({
+        'L_up': Phaser.Input.Keyboard.KeyCodes.W,
+        'L_down': Phaser.Input.Keyboard.KeyCodes.S,
+        'L_left': Phaser.Input.Keyboard.KeyCodes.A,
+        'L_right': Phaser.Input.Keyboard.KeyCodes.D,
+        'R_up': Phaser.Input.Keyboard.KeyCodes.I,
+        'R_down': Phaser.Input.Keyboard.KeyCodes.K,
+        'R_left': Phaser.Input.Keyboard.KeyCodes.J,
+        'R_right': Phaser.Input.Keyboard.KeyCodes.L
+    });
 }
 function getWebsocketUpdate(msg) {
     var robotState = JSON.parse(msg.data);
     drawRobot(gfx, robotState);
 }
 function update() {
-    //
-    if (this.input.gamepad.total === 0) {
-        return;
-    }
-    var pad = this.input.gamepad.getPad(0);
-    if (pad.axes.length) {
+    if (this.input.gamepad.total === 0) { // no gamepad detected
+        var l_x = 0;
+        var l_y = 0;
+        var r_x = 0;
+        var r_y = 0;
+        if (keyInput.L_up.isDown)
+            l_y += 1;
+        if (keyInput.L_down.isDown)
+            l_y -= 1;
+        if (keyInput.L_left.isDown)
+            l_x -= 1;
+        if (keyInput.L_right.isDown)
+            l_x += 1;
+        if (keyInput.R_up.isDown)
+            r_y += 1;
+        if (keyInput.R_down.isDown)
+            r_y -= 1;
+        if (keyInput.R_left.isDown)
+            r_x -= 1;
+        if (keyInput.R_right.isDown)
+            r_x += 1;
         joys = {
-            leftStick: { x: pad.axes[0].getValue(), y: -1 * pad.axes[1].getValue() },
-            rightStick: { x: pad.axes[2].getValue(), y: -1 * pad.axes[3].getValue() }
+            leftStick: { x: l_x, y: l_y },
+            rightStick: { x: r_x, y: r_y }
         };
+    }
+    else { // gamepad detected
+        var pad = this.input.gamepad.getPad(0);
+        if (pad.axes.length) {
+            joys = {
+                leftStick: { x: pad.axes[0].getValue(), y: -1 * pad.axes[1].getValue() },
+                rightStick: { x: pad.axes[2].getValue(), y: -1 * pad.axes[3].getValue() }
+            };
+        }
     }
 }
 function resetRobot() {
