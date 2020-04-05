@@ -7,3 +7,5 @@ const POSITION_SCALE_FACTOR = 75.0; // decrease this to make the robot appear sm
 
 // pixels per (meter per second)
 const VELOCITY_SCALE_FACTOR = 8.0; // decrease this to make the arrows appear shorter
+
+const JOY_FILTER_K = 0.15; // keyboard joystick emulation constant, lower values mean the virtual joystick moves slower

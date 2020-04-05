@@ -69,6 +69,11 @@ function update() {
             r_x -= 1;
         if (keyInput.R_right.isDown)
             r_x += 1;
+        // do a short period lowpass filter to allow for analogish control
+        l_x = l_x * JOY_FILTER_K + (1 - JOY_FILTER_K) * joys.leftStick.x;
+        l_y = l_y * JOY_FILTER_K + (1 - JOY_FILTER_K) * joys.leftStick.y;
+        r_x = r_x * JOY_FILTER_K + (1 - JOY_FILTER_K) * joys.rightStick.x;
+        r_y = r_y * JOY_FILTER_K + (1 - JOY_FILTER_K) * joys.rightStick.y;
         joys = {
             leftStick: { x: l_x, y: l_y },
             rightStick: { x: r_x, y: r_y }
@@ -83,6 +88,7 @@ function update() {
             };
         }
     }
+    drawJoysticks(gfx, joys);
 }
 function resetRobot() {
     var req = new XMLHttpRequest();

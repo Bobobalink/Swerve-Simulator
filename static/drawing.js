@@ -106,6 +106,16 @@ function drawBody(graphics, robotState) {
     graphics.fillStyle(0x0088ff);
     graphics.fillCircle(centerPoint.x, centerPoint.y, 5);
 }
+function drawJoysticks(graphics, joys) {
+    graphics.fillStyle(0x0088ff);
+    graphics.fillCircle(SCREEN_WIDTH * 0.85, SCREEN_HEIGHT * 0.05, 5);
+    graphics.lineStyle(2, 0x0088ff);
+    drawVector(graphics, { x: SCREEN_WIDTH * 0.85, y: SCREEN_WIDTH * 0.05 }, velocityToPixels({ x: 2.5 * joys.leftStick.x, y: 2.5 * joys.leftStick.y }));
+    graphics.fillStyle(0xff8800);
+    graphics.fillCircle(SCREEN_WIDTH * 0.95, SCREEN_HEIGHT * 0.05, 5);
+    graphics.lineStyle(2, 0xff8800);
+    drawVector(graphics, { x: SCREEN_WIDTH * 0.95, y: SCREEN_WIDTH * 0.05 }, velocityToPixels({ x: 2.5 * joys.rightStick.x, y: 2.5 * joys.rightStick.y }));
+}
 function pointToPixels(loc) {
     return new Geom.Point(POSITION_SCALE_FACTOR * loc.x + SCREEN_WIDTH / 2, -1 * POSITION_SCALE_FACTOR * loc.y + SCREEN_HEIGHT / 2);
 }

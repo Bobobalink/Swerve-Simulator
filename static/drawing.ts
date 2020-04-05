@@ -38,7 +38,7 @@ function drawRobot(graphics: Phaser.GameObjects.Graphics, robotState) {
     drawVelocities(graphics, robotState);
 }
 
-function drawVelocities(graphics, robotState) {
+function drawVelocities(graphics: Phaser.GameObjects.Graphics, robotState) {
     graphics.lineStyle(2, 0xffff00);
     graphics.fillStyle(0xffff00);
 
@@ -60,7 +60,7 @@ function drawVelocities(graphics, robotState) {
     }
 }
 
-function drawAppliedVelocities(graphics, robotState) {
+function drawAppliedVelocities(graphics: Phaser.GameObjects.Graphics, robotState) {
     graphics.lineStyle(2, 0xff00ff);
     graphics.fillStyle(0xff00ff);
     for (let i = 0; i < robotState.drivetrain.length; i++) {
@@ -134,6 +134,20 @@ function drawBody(graphics: Phaser.GameObjects.Graphics, robotState) {
     let centerPoint = pointToPixels(robotState.position);
     graphics.fillStyle(0x0088ff);
     graphics.fillCircle(centerPoint.x, centerPoint.y, 5);
+}
+
+function drawJoysticks(graphics: Phaser.GameObjects.Graphics, joys) {
+    graphics.fillStyle(0x0088ff);
+    graphics.fillCircle(SCREEN_WIDTH * 0.85, SCREEN_HEIGHT * 0.05, 5);
+
+    graphics.lineStyle(2, 0x0088ff);
+    drawVector(graphics, {x: SCREEN_WIDTH * 0.85, y: SCREEN_WIDTH * 0.05}, velocityToPixels({x: 2.5 * joys.leftStick.x, y: 2.5 * joys.leftStick.y}));
+
+    graphics.fillStyle(0xff8800);
+    graphics.fillCircle(SCREEN_WIDTH * 0.95, SCREEN_HEIGHT * 0.05, 5);
+
+    graphics.lineStyle(2, 0xff8800);
+    drawVector(graphics, {x: SCREEN_WIDTH * 0.95, y: SCREEN_WIDTH * 0.05}, velocityToPixels({x: 2.5 * joys.rightStick.x, y: 2.5 * joys.rightStick.y}));
 }
 
 function pointToPixels(loc) {
