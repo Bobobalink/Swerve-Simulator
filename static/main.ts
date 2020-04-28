@@ -58,11 +58,11 @@ function getWebsocketUpdate(msg) {
 }
 
 function update() {
-    if (this.input.gamepad.total === 0) { // no gamepad detected
-        let l_x = 0;
-        let l_y = 0;
-        let r_x = 0;
-        let r_y = 0;
+    let l_x = 0;
+    let l_y = 0;
+    let r_x = 0;
+    let r_y = 0;
+    if (this.input.gamepad.total === 0 || this.input.gamepad.getPad(0).axes.length == 0) { // no gamepad detected
         if(keyInput.L_up.isDown)
             l_y += 1;
         if(keyInput.L_down.isDown)
@@ -86,21 +86,23 @@ function update() {
         r_x = r_x * JOY_FILTER_K + (1 - JOY_FILTER_K) * joys.rightStick.x;
         r_y = r_y * JOY_FILTER_K + (1 - JOY_FILTER_K) * joys.rightStick.y;
 
-        joys = {
-            leftStick: {x: l_x, y: l_y},
-            rightStick: {x: r_x, y: r_y}
-        };
-
     } else { // gamepad detected
         let pad = this.input.gamepad.getPad(0);
 
-        if (pad.axes.length) {
-            joys = {
-                leftStick: {x: pad.axes[0].getValue(), y: -1 * pad.axes[1].getValue()},
-                rightStick: {x: pad.axes[2].getValue(), y: -1 * pad.axes[3].getValue()}
-            };
-        }
+        l_x = pad.axes[0].getValue();
+        l_y = -1 * pad.axes[1].getValue();
+        r_x = pad.axes[2].getValue();
+        r_y = -1 * pad.axes[3].getValue();
+
+        // special case for kaia's weird bootleg PS2 gamepad
+        if(r_y == 0)
+            r_y = -1 * pad.axes[5].getValue();
     }
+
+    joys = {
+        leftStick: {x: l_x, y: l_y},
+        rightStick: {x: r_x, y: r_y}
+    };
 
     drawJoysticks(gfx, joys);
 }
