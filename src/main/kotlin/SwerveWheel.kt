@@ -1,5 +1,7 @@
 import interfaces.SwerveWheelInterface
 import java.awt.geom.Point2D
+import java.lang.Double.isFinite
+import java.lang.Double.isNaN
 import kotlin.math.*
 
 class SwerveWheel(private val location: Point2D.Double) : SwerveWheelInterface {
@@ -20,11 +22,21 @@ class SwerveWheel(private val location: Point2D.Double) : SwerveWheelInterface {
     }
 
     override fun setWheelAngle(angle: Double) {
+        if(isNaN(angle)) {
+            throw IllegalArgumentException("Attempted to set wheel angle to NaN!")
+        } else if(!isFinite(angle)) {
+            throw IllegalArgumentException("Attempted to set wheel angle to Infinity! (Check for division by zero)")
+        }
         wheelAngle = (angle + PI) % (2 * PI) - PI
-
     }
 
     override fun setWheelVelocity(speed: Double) {
+        if(isNaN(speed))
+        {
+            throw IllegalArgumentException("Attempted to set wheel velocity to NaN!")
+        } else if(!isFinite(speed)) {
+            throw IllegalArgumentException("Attempted to set wheel velocity to Infinity! (Check for division by zero)")
+        }
         wheelVelocity = speed
     }
 
