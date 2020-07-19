@@ -81,7 +81,7 @@ function update() {
         l_y = -1 * pad.axes[1].getValue();
         r_x = pad.axes[2].getValue();
         r_y = -1 * pad.axes[3].getValue();
-        // special case for kaia's weird bootleg PS2 gamepad
+        // special case for @Karaoke4272's weird bootleg PS2 gamepad
         if (r_y == 0)
             r_y = -1 * pad.axes[5].getValue();
     }
